@@ -13,7 +13,7 @@ Assigning strings to variables:
 var a:String = "a"; // with type declaration
 var b = "b"; // without type declaration
 ```
-Combine two strings:
+Combining two strings:
 
 ```haxe
 var greeting = "hello";
@@ -39,8 +39,8 @@ In simple cases you can use `$myvariable`, for more complex expressions you can 
 ```haxe
 var age = 33;
 var year = 2017;
-var message = 'I am born in ${year - age}';
-trace(message); // output: I am born in 1984
+var message = 'I was born in ${year - age}';
+trace(message); // output: I was born in 1984
 ```
 
 ### String operations
@@ -87,7 +87,7 @@ trace(Std.parseFloat(a) > Std.parseInt(b)); // true because compared as actual n
 
 ### Multiline strings
 
-Long literal strings in Haxe can be written easily. String are multi-line:
+Long literal strings in Haxe can be written easily. Strings are multi-line:
 
 ```haxe
 var fruits = "
@@ -98,7 +98,7 @@ var fruits = "
 
 ### String manipulation
 
-String has various methods for manipulating text. These method does not change the original string, but return a new one instead. See the [String API documentation](http://api.haxe.org/String.html) for all string methods.
+The String class has various methods for manipulating text. These methods do not change the original string, but return a new one instead. See the [String API documentation](http://api.haxe.org/String.html) for all string methods.
 ```haxe
 trace("Haxe is great!".toUpperCase()); // HAXE IS GREAT!
 trace("Haxe is great!".toLowerCase()); // haxe is great!
@@ -112,7 +112,7 @@ trace(StringTools.startsWith("Haxe is great!", "Haxe")); // true
 trace(StringTools.endsWith("Haxe is great!", "Haxe")); // false
 trace("#" + StringTools.hex(255, 6)); // #0000FF
 ```
-StringTools is ideally used with `using StringTools` and then acts as [an extension](https://haxe.org/manual/lf-static-extension.html) to the String class, this would allow to do:
+StringTools is ideally used with `using StringTools` and then acts as [an extension](https://haxe.org/manual/lf-static-extension.html) to the String class, which allows the methods to be called directly on the Strings:
 ```haxe
 trace("Haxe is great!".replace("great", "fun")); // Haxe is fun!
 trace("Haxe is great!".startsWith("Haxe")); // true
@@ -124,7 +124,7 @@ trace("Haxe is great!".endsWith("Haxe")); // false
 Use `.code` on a constant single character to compile its ASCII character code:
 ```haxe
 trace("\n".code); // output: 10
-trace("@".code); // // output: 64
+trace("@".code);  // output: 64
 ```
 If you need to do this with a runtime string character, you can use `StringTools.fastCodeAt`.
 
@@ -132,7 +132,7 @@ If you need to do this with a runtime string character, you can use `StringTools
 > 
 > * [String API documentation](http://api.haxe.org/String.html)
 > * [StringTools API documentation](http://api.haxe.org/StringTools.html)
->
+> 
 > **Manual**
 > 
 > * [String in Manual](https://haxe.org/manual/std-String.html)
