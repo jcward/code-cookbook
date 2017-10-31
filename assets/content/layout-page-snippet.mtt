@@ -1,0 +1,142 @@
+::use 'layout.mtt'::
+<header class="hero-unit-small">
+	<div class="container">
+		<div class="row">
+			<div id="title">Haxe Code Cookbook</div>
+		</div>
+	</div>
+</header>
+<main class="container">
+	<section class="row">
+		<nav class="span4 sidebar-toc" id="sidebar" ::cond currentPage.customData.tag==null::>
+			<h3>Table of contents</h3>
+			<ul class="unstyled">
+			::foreach category sitemap::
+				<li ::cond !category.isSerie::><a href="::category.outputPath::" ::attr class if(category==currentCategory) "active"::>::category.title::</a>
+					<ul class="unstyled" >
+					::foreach page category.pages::
+						<li ::cond page.visible:: ::attr class if(page==currentPage) "active"::><a href="::page.outputPath::">::page.title::</a>
+							<ol ::cond page.category.isSerie && page.category==currentPage.category::>
+								::foreach page page.category.pages::
+									<li ::cond page.visible && !page.isSerieHome():: ::attr class if(page==currentPage) "active"::><a href="::page.outputPath::">::page.title::</a></li>
+								::end::
+							</ol>
+						</li>
+					::end::
+					</ul>
+				</li>
+				<br ::cond !category.isSerie::/>
+				::end::
+			</ul>
+		</nav>
+		<nav class="span4 sidebar-tags" id="sidebar" ::cond currentPage.customData.tag!=null::>
+			<h3>All tags</h3>
+			<ul class="unstyled">
+			::foreach tag getSortedTags()::
+				<li ::attr class if(tag==currentPage.customData.tag) "active"::><i class="fa fa-tag"></i> <a href="tag/::tag::.html"><span>::getTagTitle(tag)::</span></a> <small class="category-count">(::tags.get(tag).length::)</small></li>
+			::end::
+			</ul>
+		</nav>
+		
+		<article class="span8" itemscope="itemscope" itemtype="http://schema.org/Article">
+			<small itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList">
+				<span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem"><a itemprop="name" href="/">Haxe programming cookbook</a> › </span>
+				<span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" ::cond currentPage.category.isSerie && !currentPage.isSerieHome() && currentPage.category.parent!=null ::><a itemprop="name" href="::currentPage.category.parent.outputPath::">::currentPage.category.parent.title::</a> › </span>
+				<span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem"><a itemprop="name" href="::currentPage.category.outputPath::">::currentPage.category.title::</a> › </span>
+				<span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem"><a itemprop="name" href="::currentPage.outputPath::">::currentPage.title::</a></span>
+			</small>
+			
+			<h1><a href="::currentPage.absoluteUrl::" itemprop="url" class="anchorjs-icons"></a> <span itemprop="name">::currentPage.title::</span></h1>
+			
+		
+			<div itemprop="articleBody">::raw pageContent::</div>
+			
+			<hr/>
+			<blockquote class="blockquote">
+				
+				<div ::cond currentPage.authors.length>0:: class="authors row" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+					<span class="span2">Author:</span> 
+					<div class="span4">::foreach author currentPage.authors::
+						<a href="::author.profileLink::"><img src="https://github.com/::author.username::.png?size=80" width="40" height="40" title="::author.name::" /></a> 
+						<a href="::author.profileLink::" itemprop="url" rel="external" class="author-name"><span itemprop="name">::author.name::</span></a><br/>
+					::end::
+					</div> 
+				</div> 
+				<div ::cond currentPage.contributors.length>0:: class="contributors row">
+					<span class="span2">Contributors:</span> 
+					<div class="span4">::foreach author currentPage.contributors::
+						::if author.profileLink != null::
+						<a href="::author.profileLink::" rel="external">
+							<img src="https://github.com/::author.username::.png?size=40" width="20" height="20" title="::author.name::" ::cond author.username != null:: /> 
+							<img src="https://www.gravatar.com/avatar/::author.hash::.jpg?s=40" width="20" height="20" title="::author.name::" ::cond author.username == null:: /> 
+						</a>
+						::else::
+						<img src="https://github.com/::author.username::.png?size=40" width="20" height="20" title="::author.name::" ::cond author.username != null:: /> 
+						<img src="https://www.gravatar.com/avatar/::author.hash::.jpg?s=40" width="20" height="20" title="::author.name::" ::cond author.username == null:: /> 
+						::end::
+						
+						::if author.profileLink != null::
+							<a href="::author.profileLink::" rel="external" class="author-name">::author.name::</a>
+						::else::
+							<span class="author-name">::author.name::</span>
+						::end::
+						<br/>
+					::end::
+					</div> 
+				</div>
+				<div class="row" ::cond currentPage.dates.modified !=null::><span class="span2">Last modified:</span><time class="span4" datetime="::currentPage.dates.modified::" itemprop="dateModified"><span class="fa fa-clock-o"></span> <a href="::currentPage.commitHistoryUrl::" rel="external">::DateTools.format(currentPage.dates.modified, "%b %d, %Y")::</a></time></div>
+				<div class="row semantic" ::cond currentPage.dates.created !=null::><span class="span2">Created:</span> <time class="span4" datetime="::currentPage.dates.created::" itemprop="datePublished"><span class="fa fa-clock-o"></span> ::DateTools.format(currentPage.dates.created, "%b %d, %Y")::</time></div>
+				<div ::cond !currentPage.category.isSerie:: class="row semantic">
+					<span class="span2">Category:</span> 
+					<span class="span4" itemprop="articleSection"><i class="fa fa-book"></i>&nbsp;<a href="::currentCategory.outputPath::">::currentCategory.title::</a></span>
+				</div>
+				<div class="row tags" ::cond currentPage.visible && currentPage.tags!=null && currentPage.tags.length>0::>
+				<span class="span2">Tags:</span> 
+				<div class="span4">
+					<span itemprop="keywords">
+					::foreach tag currentPage.tags::
+						<span class="tag"><i class="fa fa-tag"></i>&nbsp;<a href="tag/::tag::.html" rel="tag">::tag::</a><i class="semantic" ::cond !repeat.tag.last::>,</i></span>
+					::end::
+					</span>
+				</div>
+			</div>
+				
+			</blockquote>
+			
+			<div ::cond (currentPage.next!=null || currentPage.prev!=null)::>
+				<hr/>
+				<ul class="pager">
+					<li class="previous" ::cond currentPage.prev!=null::><a href="::currentPage.prev.outputPath::">&larr; ::currentPage.prev.title::</a></li>
+					<li class="previous" ::cond currentPage.prev==null::><a href="::currentPage.category.outputPath::">&larr; ::currentPage.category.title::</a></li>
+					<li class="next" ::cond currentPage.next!=null::><a href="::currentPage.next.outputPath::">::currentPage.next.title:: &rarr;</a></li>
+				</ul>
+			</div>
+			<hr/>
+			<div class="contribution">
+				<span><i class="fa fa-lightbulb-o"></i> <a href="::currentPage.editUrl::?message=Update:%20::currentPage.title::&description=%0A%0ASources:%0A*%20::currentPage.absoluteUrl::%0A%0A::foreach author currentPage.authors::%40::author.username:: ::end::" rel="external">Suggest improvement</a></span> 
+				<span>| <i class="fa fa-exclamation-circle"></i> <a href="https://github.com/HaxeFoundation/code-cookbook/issues/new?title=Suggestion:%20::currentPage.title::&body=%0A%0ASources:%0A*%20::currentPage.absoluteUrl::%0A*%20::currentPage.contributionUrl::%0A%0A::foreach author currentPage.authors::%40::author.username:: ::end::" rel="external">Report issue</a></span> 
+				<span ::cond !currentPage.category.isSerie::>| <i class="fa fa-plus-circle"></i> <a href="::currentPage.addLinkUrl::" rel="external">Add new snippet</a></span> 
+			</div>
+			<hr/>
+			<div class="share-buttons">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="haxe">Tweet</a> 
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				
+				&nbsp; &nbsp;
+				<!-- Load Facebook SDK for JavaScript -->
+				<div id="fb-root" style="display:inline-block"></div>
+				<script>(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+
+				<!-- FB like button code -->
+				<div class="fb-like" data-href="::currentPage.absoluteUrl::" style="display:inline-block" data-layout="button_count" data-action="like" data-show-faces="true"></div>
+			</div>
+		</article>
+	</section>
+</main>
+::end::

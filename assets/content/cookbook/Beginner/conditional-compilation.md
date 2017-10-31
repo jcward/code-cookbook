@@ -35,7 +35,7 @@ class Main {
 
 Assume the following build file:
 
-```
+```hxml
 -main Main
 -neko main.n
 -D introduce
@@ -49,8 +49,7 @@ Hello, this is an example of conditional compilation.
 Welcome, super user!
 ```
 
-> Learn about conditional compilation here: <http://haxe.org/manual/lf-condition-compilation.html>
+> * Learn about conditional compilation here: <http://haxe.org/manual/lf-condition-compilation.html>
+> * Learn about available global compiler flags here: <http://haxe.org/manual/compiler-usage-flags.html>
 >
-> Learn about available global compiler flags here: <http://haxe.org/manual/lf-condition-compilation-flags.html>
->
-> Author: [Domagoj Štrekelj](http://github.com/dstrekelj)
+> Author: [Domagoj Štrekelj](https://github.com/dstrekelj)

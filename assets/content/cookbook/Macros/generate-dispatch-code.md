@@ -26,8 +26,7 @@ class DispatchBuilder {
       // skip the constructor
       if (field.name == 'new') continue;
       
-      switch (field.kind) 
-      {
+      switch (field.kind) {
         case FieldType.FFun(fn):
           // skip non-empty functions
           if (!isEmpty(fn.expr)) continue;
@@ -64,7 +63,7 @@ You will need to create a `Dispatcher` base class.
 @:autoBuild(DispatchBuilder.build())
 class Dispatcher<T> {
   var listeners:Array<T>;
-	
+
   public function new() {
     listeners = [];
   }

@@ -13,9 +13,9 @@
 ## Build macro
 
 ```haxe
+import haxe.macro.Context;
+import haxe.macro.Expr;
 class MyMacro {
-  import haxe.macro.Context;
-  import haxe.macro.Expr;
   public static function build():Array<Field> {
     // get existing fields from the context from where build() is called
     var fields = Context.getBuildFields();
@@ -66,4 +66,4 @@ class Main {
 }
 ```
 
-> Author: [Mark Knol](http://github.com/markknol)
+> Author: [Mark Knol](https://github.com/markknol)

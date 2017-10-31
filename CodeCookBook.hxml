@@ -1,15 +1,29 @@
--lib markdown
--lib hxtemplo
--lib hxparse
--cp src
--neko CodeCookBook.n
--main Main
--dce no
-
---next
-
 -cp src
 -js assets/includes/js/highlighter.js
 -main Highlighter
 -dce full
 -D analyzer
+-D analyzer-optimize
+
+--next 
+
+-cmd lessc assets/includes/css/haxe-nav.css assets/includes/css/haxe-nav.min.css --clean-css="--s1 --advanced"
+-cmd lessc assets/includes/css/styles.css assets/includes/css/styles.min.css --clean-css="--s1 --advanced"
+-cmd lessc assets/includes/css/highlighter.css assets/includes/css/highlighter.min.css --clean-css="--s1 --advanced"
+
+--next
+
+-lib markdown
+-lib hxtemplo
+-lib hxparse
+-cp src
+-main Main
+-dce full
+ --macro keep("DateTools")
+ --macro keep("haxe.ds.StringMap")
+-D analyzer
+-D analyzer-optimize
+
+# for debug-only fast compile use:
+#-D disable_git_dates
+#-D disable_git_authors

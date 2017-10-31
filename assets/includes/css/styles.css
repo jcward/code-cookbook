@@ -25,9 +25,21 @@ h1 {
   font-weight: normal;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6, #title {
   font-family: "Source Sans Pro", courier;
   font-weight: normal;
+}
+
+article h4 {
+  font-weight: 700;
+}
+
+h3 code {
+  font-size: 20px;
+}
+
+#title {
+  font-size: 38.5px;
 }
 
 article h1, article h2, article h3, article h4, article h5, article h6 {
@@ -61,6 +73,16 @@ a, a:hover, a > code {
   color: #999;
 }
 
+.authors img
+{
+    margin-bottom: 2px;
+}
+
+.contributors a
+{
+    margin-bottom: 2px;
+}
+
 @media (max-width: 767px) {
   body {padding:0}
   .container {
@@ -71,10 +93,6 @@ a, a:hover, a > code {
     margin-left: 0;
     margin-right: 0;
   }
-  .fa.fa-big {
-    display:block;
-  }
-  
   
   main.container section {
     display: flex;
@@ -135,10 +153,10 @@ a, a:hover, a > code {
   background: #FBC707;
   
   background-repeat: no-repeat;
-	background: -webkit-gradient(radial, 50% 80%, 0, center center, 100, from(183,77,49), to(100,33,38));
-	background: -webkit-radial-gradient(50% 80%, circle, rgb(183,77,49), rgb(100,33,38));
-	background: -moz-radial-gradient(50% 80%, circle, rgb(183,77,49), rgb(100,33,38));
-	background: -ms-radial-gradient(50% 80%, circle, rgb(183,77,49), rgb(100,33,38));
+  background: -webkit-gradient(radial, 50% 80%, 0, center center, 100, from(183,77,49), to(100,33,38));
+  background: -webkit-radial-gradient(50% 80%, circle, rgb(183,77,49), rgb(100,33,38));
+  background: -moz-radial-gradient(50% 80%, circle, rgb(183,77,49), rgb(100,33,38));
+  background: -ms-radial-gradient(50% 80%, circle, rgb(183,77,49), rgb(100,33,38));
   
   color: #f0f0f0;
   text-align: center;
@@ -153,22 +171,22 @@ a, a:hover, a > code {
 
 .hero-unit-small {
   padding: 2em 0;
-  margin-bottom: 1em;
-  border-bottom: 30px solid #eee;
+  margin-bottom: 1.5em;
+  border-bottom: 15px solid #eee;
   box-shadow: inset 0px 0px 50px rgba(0,0,0, 0.3);
 }
 
-.hero-unit h1, .hero-unit-small h1 {
+.hero-unit h1, #title, .hero-unit-small h1 {
   color: #fff;
   text-shadow:2px 2px 2px rgba(0,0,0,.15);
 }
 
-.hero-unit h1 small, .hero-unit-small h1 small {
+.hero-unit h1 small, #title small, .hero-unit-small h1 small {
   color: #C06B69;
 }
 
-.hero-unit-small h1 {
-  margin-bottom: .5em;
+.hero-unit-small h1, .hero-unit-small #title {
+  margin-bottom: 0em;
 }
 
 .logo {
@@ -318,10 +336,10 @@ code.prettyprint {
 }
 
 .fa-big {
-	font-size:38px;
-	color:#555;
-  padding-left:25px;
-  padding-right:25px;
+  font-size:32px;
+  color:#555;
+  padding-left:15px;
+  padding-right:15px;
 }
 
 .btn {
@@ -331,48 +349,56 @@ code.prettyprint {
 .try-haxe {
   width:100%;
   height:350px;
-  border:1px solid #ccc;
-  border-radius:4px;
-  box-shadow:0 0 2px #ccc;
-  margin:15px 0;
+  margin:0;
+  border:0px;
 }
 
-/**
-	Code Highlighting
-**/
-
-html pre, html pre code {
-	font-family: consolas, monospace;
-	white-space: pre;
-	overflow-x: auto;
-}
-pre {
-	color: #333;
-	margin: 15px 0;
-  padding: 0.5em;
-}
-pre .type  {
-	color: #0086b3;
-}
-pre .kwd {
-	color: #00a;
-}
-pre .val  {
-	color: #44a;
-}
-pre .str, div.pre .str, pre .str .kwd, pre .str .val, pre .str .type {
-	color: #a00;
-}
-pre .cmt {
-	color: #008800;
-  color: #998;
-  font-style: italic;
-}
-/* Make sure keywords inside comments are not highlighted*/
-pre .cmt .kwd, pre .cmt .str, pre .cmt .val, pre .cmt .type {
-	color: #998;
+.page-list-item:not(last-child) {
+	margin-bottom:20px;
 }
 
-.last-modified {
-  color:#999;
+.page-list-item p {
+	margin-left:10px;
+}
+
+.page-list h4 {
+	font-weight:normal;
+}
+
+.page-list-item {
+	padding: 1px 15px 15px 15px;
+	border: 1px solid #eeeeee;
+	border-radius: 5px;
+	background:#fdfdfd;
+}
+
+.g-plus, #___plus_0 { vertical-align: text-bottom !important; }
+.twitter-share-button { vertical-align: text-bottom !important; }
+
+
+
+.flex-video {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  height: 0;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.flex-video.widescreen { padding-bottom: 57.25%; }
+.flex-video.vimeo { padding-top: 0; }
+
+.flex-video iframe,
+.flex-video object,
+.flex-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+  .flex-video { padding-top: 0; }
 }

@@ -1,4 +1,4 @@
-[tags]: / "conditional-compilation,macro-function"
+[tags]: / "conditional-compilation,expression-macro"
 
 # Working with compiler flags
 
@@ -54,7 +54,7 @@ class Main {
 
 Assume the following build file:
 
-```
+```hxml
 -main Main
 -neko main.n
 -D warning="Don't let the bed bugs bite!"
@@ -69,8 +69,8 @@ Warning: "Don't let the bed bugs bite!"
 
 The last line may differ depending on the Haxe version and compilation options, because it is the string representation of the map containing all defined compiler flags.
 
-> Learn about conditional compilation here: <http://haxe.org/manual/lf-condition-compilation.html>
+> Learn about conditional compilation here: <https://haxe.org/manual/lf-condition-compilation.html>
 >
-> Learn about available global compiler flags here: <http://haxe.org/manual/lf-condition-compilation-flags.html>
+> Learn about available global compiler flags here: <https://haxe.org/manual/compiler-usage-flags.html>
 >
-> Author: [Domagoj Štrekelj](http://github.com/dstrekelj)
+> Author: [Domagoj Štrekelj](https://github.com/dstrekelj)

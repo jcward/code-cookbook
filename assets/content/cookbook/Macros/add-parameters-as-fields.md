@@ -1,4 +1,4 @@
-[tags]: / "macro-function,building-fields"
+[tags]: / "expression-macro,building-fields"
 
 # Add parameters as fields
 
@@ -59,4 +59,4 @@ class Test {
 }
 ```
 
-> Author: [Mark Knol](http://github.com/markknol)
+> Author: [Mark Knol](https://github.com/markknol)
